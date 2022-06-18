@@ -1,0 +1,141 @@
+/* css variable that  */
+@import url('https://fonts.googleapis.com/css2?family=Oxygen&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oxygen&display=swap');
+
+
+:root {
+    --black: #171321;
+    --dkblue: #0d314b;
+    --plum: #4b0d49;
+    --hotmag: #ff17e4;
+    --magenta: #e310cb;
+    --aqua: #86fbfb;
+    --white: #f7f8fa;
+    --font-size: 1.3rem;
+    --mono: "Oxygen mono", monospace;
+    --sans: Oxygen, sans-serif;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--plum);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--black);
+    color: var(--white);
+    font-family: var(--sans);
+}
+
+#nav-bar ul {
+    display: flex;
+    gap: 2rem;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#nav-bar li:first-child {
+    flex-basis: 100%;
+    text-align: center;
+    font-family: var(--sans);
+}
+
+#nav-bar li:last-child {
+    background-color: var(--hotmag);
+    padding: 7px;
+    border-radius: 7px;
+}
+
+#nav-bar li:last-child:hover {
+    background-color: var(--magenta);
+}
+
+#intro {
+    padding-bottom: 10rem;
+    margin: 4rem auto 0rem 6rem;
+}
+
+#intro p {
+    font-size: 1rem;
+    line-height: 1.49;
+}
+
+.name {
+    font-family: var(--mono)
+}
+
+.name span {
+    font-size: 4rem;
+    color: var(--aqua);
+    display: block;
+    font-family: var(--sans);
+
+}
+
+/* contact section */
+
+#contact-me {
+    background-color: var(--magenta);
+    background-image: url("./contact.svg");
+    color: var(--dkblue);
+    display: flex;
+    flex-direction: column;
+    /* outline: 1px solid gray; */
+    padding: 1rem;
+    place-items: center;
+}
+
+#content p {
+    line-height: 1.4;
+}
+
+.social-media {
+    display: flex;
+    gap: 1rem;
+}
+
+ul {
+    list-style-type: none;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+}
+
+.line-break {
+    height: 4px;
+    width: 100%;
+    background-image: url("./wavy.svg");
+}
+
+/* for larger screen size */
+@media only screen and (min-width: 849px) {
+    #nav-bar li:first-child {
+        flex-basis: auto;
+        text-align: left;
+        margin-right: auto;
+    }
+
+    #nav-bar {
+        margin: auto 4rem auto 4rem;
+    }
+
+}
