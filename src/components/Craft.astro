@@ -1,0 +1,42 @@
+---
+const services = [
+  { n: '01', icon: '⚡', title: 'Build', desc: 'Full web & mobile products. JavaScript and PHP.', list: ['Web applications', 'Mobile apps', 'Admin dashboards', 'API & backend'] },
+  { n: '02', icon: '🧠', title: 'AI-integrate', desc: 'Embed AI into real workflows — not demos.', list: ['AI app layer', 'Smart search', 'Workflow agents', 'Prompt engineering'] },
+  { n: '03', icon: '🚀', title: 'Deploy', desc: 'Localhost to production. Servers, domains, SSL, CI/CD.', list: ['Server provisioning', 'CI/CD pipelines', 'Performance tuning', 'Monitoring'] },
+  { n: '04', icon: '🛡', title: 'Maintain', desc: 'Patches, features, uptime. Quiet, dependable partnership.', list: ['Uptime monitoring', 'Security patches', 'Feature iteration', 'On-call support'] },
+];
+---
+<section id="craft" class="section">
+  <div class="section-inner">
+    <div class="mono section-label">01 — What I Build</div>
+    <h2 class="section-title">
+      Four disciplines, <span class="gradient-text">one seamless</span> process.
+    </h2>
+    <p class="section-desc">
+      From first sketch to live deployment — ideation, engineering, AI integration, and long-term maintenance.
+    </p>
+
+    <div class="services-grid">
+      {services.map((s) => (
+        <div class="card service-card">
+          <div style="position:relative;z-index:1;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
+              <div class="mono" style="font-size:11px;color:var(--ink-dim);letter-spacing:0.1em;">/ {s.n}</div>
+              <div class="service-icon">{s.icon}</div>
+            </div>
+            <div class="gradient-text service-number">{s.n[1]}</div>
+            <h3 class="service-title">{s.title}</h3>
+            <p style="font-size:14px;color:var(--ink-mute);line-height:1.65;">{s.desc}</p>
+          </div>
+          <ul style="margin-top:20px;position:relative;z-index:1;">
+            {s.list.map((li) => (
+              <li style="font-size:12px;color:var(--ink-mute);padding:7px 0;border-top:1px solid var(--glass-border);display:flex;gap:8px;align-items:center;">
+                <span style="color:var(--accent);font-size:10px;">→</span>{li}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

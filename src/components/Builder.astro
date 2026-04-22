@@ -1,0 +1,152 @@
+---
+const steps = [
+  { key: 'type', label: '/ 01 — What do you need?', options: [['ai', 'AI product'], ['webapp', 'Web app'], ['mobile', 'Mobile app'], ['automation', 'Automation']] },
+  { key: 'scope', label: '/ 02 — How complex?', options: [['simple', 'Simple'], ['medium', 'Medium'], ['full', 'Full system']] },
+  { key: 'time', label: '/ 03 — Timeline?', options: [['fast', 'ASAP'], ['normal', '1–2 months'], ['flex', 'Flexible']] },
+];
+---
+<div class="builder-container">
+  <!-- Decorative orbs -->
+  <div style="position:absolute;top:-120px;left:-80px;width:400px;height:400px;background:radial-gradient(circle, var(--accent-glow-soft), transparent 60%);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:-100px;right:-60px;width:300px;height:300px;background:radial-gradient(circle, var(--purple-glow), transparent 60%);pointer-events:none;"></div>
+
+  <div class="builder-inner">
+    <div style="display:flex;flex-direction:column;gap:28px;">
+      {steps.map(step => (
+        <div>
+          <div class="mono" style="font-size:11px;letter-spacing:0.12em;color:var(--accent);text-transform:uppercase;margin-bottom:14px;">
+            {step.label}
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            {step.options.map(([v, l]) => (
+              <button
+                class="builder-btn"
+                data-key={step.key}
+                data-value={v}
+              >
+                {l}
+              </button>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="builder-result">
+      <div style="position:absolute;top:20px;right:20px;width:10px;height:10px;background:var(--sage);border-radius:50%;box-shadow:0 0 12px var(--teal-glow);"></div>
+      <div class="mono" style="font-size:10px;color:var(--ink-dim);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;">
+        Your project — estimate
+      </div>
+      <div class="builder-result-title" id="builder-sentence">
+        Yes — I can build <span class="gradient-text" id="builder-type">an AI-powered product</span>, <span class="gradient-text" id="builder-time">on a normal cadence</span>.
+      </div>
+      <div class="builder-meta">
+        <div class="builder-meta-card">
+          <div class="builder-meta-label">Timeline</div>
+          <div class="builder-meta-value" id="builder-timeline">4–8 wks</div>
+        </div>
+        <div class="builder-meta-card">
+          <div class="builder-meta-label">Scope</div>
+          <div class="builder-meta-value" id="builder-scope">balanced & modular</div>
+        </div>
+        <div class="builder-meta-card">
+          <div class="builder-meta-label">Investment</div>
+          <div class="builder-meta-value">Project-based</div>
+        </div>
+      </div>
+      <a href="#contact" class="btn-primary" style="margin-top:20px;font-size:13px;">
+        Let's talk about it →
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .builder-btn {
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    color: var(--ink-secondary);
+    font-size: 13px;
+    font-weight: 400;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.3s;
+  }
+  .builder-btn:hover {
+    background: var(--glass-bg-hover);
+  }
+  .builder-btn.active {
+    border-color: transparent;
+    background: linear-gradient(135deg, var(--accent-deep), var(--accent));
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 4px 20px var(--accent-glow-soft);
+  }
+  .builder-meta-card {
+    padding: 10px 14px;
+    background: var(--glass-bg);
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    flex: 1 1 auto;
+    min-width: 100px;
+    transition: background 0.5s, border-color 0.5s;
+  }
+  .builder-meta-label {
+    font-size: 10px;
+    color: var(--ink-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+  .builder-meta-value {
+    font-weight: 600;
+    color: var(--ink);
+  }
+</style>
+
+<script>
+  const copy: Record<string, Record<string, string>> = {
+    type: { ai: 'an AI-powered product', webapp: 'a full web application', mobile: 'a mobile app', automation: 'a custom automation' },
+    scope: { simple: 'focused & lean', medium: 'balanced & modular', full: 'full-scale production' },
+    time: { fast: 'fast', normal: 'on a normal cadence', flex: 'at a flexible pace' },
+  };
+
+  const timeMap: Record<string, string> = {
+    'ai-simple': '2–3 wks', 'ai-medium': '4–8 wks', 'ai-full': '2–3 mo',
+    'webapp-simple': '4–6 wks', 'webapp-medium': '8–10 wks', 'webapp-full': '3–4 mo',
+    'mobile-simple': '6–8 wks', 'mobile-medium': '10–12 wks', 'mobile-full': '4–5 mo',
+    'automation-simple': '1–2 wks', 'automation-medium': '3–4 wks', 'automation-full': '6–8 wks',
+  };
+
+  const state: Record<string, string> = { type: 'ai', scope: 'medium', time: 'normal' };
+
+  function update() {
+    document.getElementById('builder-type')!.textContent = copy.type[state.type];
+    document.getElementById('builder-time')!.textContent = copy.time[state.time];
+    document.getElementById('builder-timeline')!.textContent = timeMap[`${state.type}-${state.scope}`];
+    document.getElementById('builder-scope')!.textContent = copy.scope[state.scope];
+  }
+
+  function syncButtons() {
+    document.querySelectorAll('.builder-btn').forEach(btn => {
+      const key = (btn as HTMLElement).dataset.key!;
+      const value = (btn as HTMLElement).dataset.value!;
+      btn.classList.toggle('active', state[key] === value);
+    });
+  }
+
+  document.querySelectorAll('.builder-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = (btn as HTMLElement).dataset.key!;
+      const value = (btn as HTMLElement).dataset.value!;
+      state[key] = value;
+      update();
+      syncButtons();
+    });
+  });
+
+  syncButtons();
+  update();
+</script>

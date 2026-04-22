@@ -1,0 +1,19 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import LiveClock from './LiveClock.astro';
+---
+<nav class="site-nav">
+  <div class="nav-logo">
+    <span class="gradient-text">Hare</span><span style="color:var(--ink-secondary);">Om</span>
+  </div>
+  <div class="nav-links">
+    <a href="#work" class="nav-pill">Work</a>
+    <a href="#craft" class="nav-pill">Craft</a>
+    <a href="#build" class="nav-pill">Build</a>
+    <a href="#contact" class="nav-pill">Contact</a>
+  </div>
+  <div class="nav-right">
+    <LiveClock />
+    <ThemeToggle />
+  </div>
+</nav>

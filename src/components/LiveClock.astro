@@ -1,0 +1,43 @@
+---
+---
+<div class="mono live-clock">
+  <span class="pulse clock-dot">●</span>
+  <span id="clock-time"></span>
+  <span class="clock-tz">BKK</span>
+</div>
+
+<style>
+  .live-clock {
+    font-size: 11px;
+    color: var(--ink-dim);
+    letter-spacing: 0.06em;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 10px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    transition: background 0.5s, border-color 0.5s;
+  }
+  .clock-dot {
+    color: var(--sage);
+    font-size: 8px;
+  }
+  .clock-tz {
+    opacity: 0.5;
+  }
+</style>
+
+<script>
+  function tick() {
+    const d = new Date();
+    const bkk = new Date(d.getTime() + (7 * 60 - d.getTimezoneOffset()) * 60000);
+    const h = String(bkk.getHours()).padStart(2, '0');
+    const m = String(bkk.getMinutes()).padStart(2, '0');
+    const el = document.getElementById('clock-time');
+    if (el) el.textContent = `${h}:${m}`;
+  }
+  tick();
+  setInterval(tick, 30000);
+</script>

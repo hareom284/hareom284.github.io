@@ -1,0 +1,13 @@
+---
+const items = ['AI Products', 'Web Apps', 'Mobile', 'JavaScript', 'PHP', 'Automation', 'Deployment'];
+const doubled = [...items, ...items];
+---
+<div class="glass marquee-container">
+  <div class="marquee-track marquee-text" style="display:inline-block;">
+    {doubled.map((word, i) => (
+      <span style={`margin:0 24px;color:var(${i % 2 ? '--accent' : '--ink-secondary'});`}>
+        {word}<span style="margin:0 18px;font-size:0.5em;opacity:0.3;">◆</span>
+      </span>
+    ))}
+  </div>
+</div>
