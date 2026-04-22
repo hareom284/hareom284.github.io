@@ -70,6 +70,15 @@ const ogImage = `${siteUrl}/icon-512.png`;
     ]
   })} />
 
+  <!-- Google Analytics -->
+  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-ZMSD9B4J4D"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZMSD9B4J4D');
+  </script>
+
   <!-- Restore saved theme BEFORE paint -->
   <script is:inline>
     (function() {
