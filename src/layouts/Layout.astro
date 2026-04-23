@@ -5,7 +5,7 @@ interface Props {
 const { title = 'Hare Om (Zaw Zaw Win) — Software Developer in Bangkok, Chiang Mai & Myanmar' } = Astro.props;
 const description = 'Hare Om (Zaw Zaw Win) — Software Developer based in Bangkok & Chiang Mai. 6+ years building web apps, mobile apps, and AI products with JavaScript and PHP. Available for freelance work in Thailand and Myanmar (Yangon).';
 const siteUrl = 'https://hareom284.com';
-const ogImage = `${siteUrl}/icon-512.png`;
+const ogImage = `${siteUrl}/og-image.png`;
 ---
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
@@ -27,6 +27,9 @@ const ogImage = `${siteUrl}/icon-512.png`;
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/png" />
   <meta property="og:site_name" content="Hare Om — Portfolio" />
   <meta property="og:locale" content="en_US" />
 
