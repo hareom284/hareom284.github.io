@@ -41,9 +41,7 @@ const ogImage = `${siteUrl}/og-image.png`;
   <meta name="twitter:image" content={ogImage} />
 
   <!-- Favicons (profile picture) -->
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" id="animated-favicon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
   <!-- Web App Manifest -->
@@ -89,6 +87,54 @@ const ogImage = `${siteUrl}/og-image.png`;
       if (saved === 'light' || saved === 'dark') {
         document.documentElement.setAttribute('data-theme', saved);
       }
+    })();
+  </script>
+
+  <!-- Animated rolling favicon -->
+  <script is:inline>
+    (function() {
+      var img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.src = '/favicon-32x32.png';
+      img.onload = function() {
+        var canvas = document.createElement('canvas');
+        canvas.width = 32;
+        canvas.height = 32;
+        var ctx = canvas.getContext('2d');
+        var angle = 0;
+
+        function roll() {
+          angle += 0.03;
+          if (angle >= Math.PI * 2) angle -= Math.PI * 2;
+
+          ctx.clearRect(0, 0, 32, 32);
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(16, 16, 16, 0, Math.PI * 2);
+          ctx.closePath();
+          ctx.clip();
+          ctx.translate(16, 16);
+          ctx.rotate(angle);
+          ctx.drawImage(img, -16, -16, 32, 32);
+          ctx.restore();
+
+          var dataUrl = canvas.toDataURL('image/png');
+
+          // Replace the link node so Chrome picks up the change
+          var old = document.getElementById('animated-favicon');
+          var link = document.createElement('link');
+          link.id = 'animated-favicon';
+          link.rel = 'icon';
+          link.type = 'image/png';
+          link.sizes = '32x32';
+          link.href = dataUrl;
+          old.parentNode.replaceChild(link, old);
+
+          requestAnimationFrame(roll);
+        }
+
+        roll();
+      };
     })();
   </script>
 </head>
