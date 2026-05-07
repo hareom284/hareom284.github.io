@@ -1,19 +1,38 @@
 ---
-import ThemeToggle from './ThemeToggle.astro';
-import LiveClock from './LiveClock.astro';
 ---
 <nav class="site-nav">
-  <div class="nav-logo">
-    <span class="gradient-text">Hare</span><span style="color:var(--ink-secondary);">Om</span>
+  <div class="nav-brand">
+    <span class="nav-name">Hare Om.</span>
+    <span class="nav-title">Software Engineer</span>
   </div>
-  <div class="nav-links">
-    <a href="#work" class="nav-pill">Work</a>
-    <a href="#craft" class="nav-pill">Craft</a>
-    <a href="#build" class="nav-pill">Build</a>
-    <a href="#contact" class="nav-pill">Contact</a>
-  </div>
-  <div class="nav-right">
-    <LiveClock />
-    <ThemeToggle />
+  <div class="nav-right-group">
+    <span id="visitor-location" class="visitor-badge"></span>
+    <div class="nav-links">
+      <a href="#work">Archive</a>
+      <a href="#journey">Journey</a>
+      <a href="#footer" class="nav-accent">Contact</a>
+    </div>
   </div>
 </nav>
+
+<style>
+  .nav-right-group {
+    display: flex;
+    align-items: flex-end;
+    gap: 32px;
+  }
+  .visitor-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.35);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    white-space: nowrap;
+  }
+  @media (max-width: 640px) {
+    .nav-right-group { gap: 0; }
+    .visitor-badge { display: none; }
+  }
+</style>

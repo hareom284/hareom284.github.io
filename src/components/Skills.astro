@@ -1,0 +1,22 @@
+---
+const categories = [
+  { label: 'Backend / PHP', items: ['Laravel', 'GraphQL', 'REST APIs', 'DDD / TDD'] },
+  { label: 'Frontend / JS', items: ['Vue.js', 'React.js', 'Nuxt.js', 'TypeScript'] },
+  { label: 'Automation / AI', items: ['Claude Code', 'Cursor', 'GitHub Copilot', 'Codex'] },
+  { label: 'Infra', items: ['Docker', 'CI/CD', 'Linux / Nginx', 'PostgreSQL'] },
+];
+---
+<section class="section">
+  <div class="arsenal-grid">
+    {categories.map((cat) => (
+      <div class="reveal">
+        <h4 class="arsenal-label">{cat.label}</h4>
+        <ul class="arsenal-list">
+          {cat.items.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</section>

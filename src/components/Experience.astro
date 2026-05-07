@@ -1,0 +1,48 @@
+---
+const jobs = [
+  {
+    period: 'Current / May 2024',
+    current: true,
+    role: 'Software Engineer @ Leap Technology',
+    detail: 'Remote (Singapore). Architecting scalable EdTech solutions using Domain-Driven Design, complex RBAC systems, and no-code page builders for multi-organization tiers.',
+  },
+  {
+    period: '2023 — 2024',
+    current: false,
+    role: 'Software Engineer @ Onenex',
+    detail: "Developed core HR modules for Yoma Connect — Myanmar's flagship platform with 8,000+ DAU. Focused on API performance, biometric auth security, and real-time dashboards.",
+  },
+  {
+    period: '2022 — 2023',
+    current: false,
+    role: 'Junior Software Developer @ Host Myanmar',
+    detail: 'Engineered SaaS Point-of-Sale systems. Designed hold-and-resume features, automated invoicing, and barcode-driven checkout workflows for merchant growth.',
+  },
+  {
+    period: '2024 — Present',
+    current: true,
+    role: 'Freelance Engineer & AI Builder',
+    detail: 'Shipping AI-augmented web apps using Claude Code, Cursor, and GitHub Copilot. Automated infrastructure saving 200+ hours/month. 99.9% uptime across client systems.',
+  },
+];
+---
+<section id="journey" class="section journey-section">
+  <div class="journey-grid">
+    <div>
+      <div class="section-prefix">// Journey</div>
+      <p class="journey-quote">
+        Building software isn't just about code — it's about creating systems that survive real-world stress.
+      </p>
+    </div>
+
+    <div class="journey-entries">
+      {jobs.map((job) => (
+        <div class="reveal">
+          <span class={`journey-period ${job.current ? 'current' : 'past'}`}>{job.period}</span>
+          <h3 class="journey-role">{job.role}</h3>
+          <p class="journey-detail">{job.detail}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
